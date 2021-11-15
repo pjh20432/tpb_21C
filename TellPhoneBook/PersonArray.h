@@ -15,3 +15,9 @@ void AddPersonArray(PersonArray* pa);
 
 void PrintPersonArray(PersonArray* pa);
 
+void SearchPersonArray(PersonArray* pa);
+
+void RemovePersonArray(PersonArray* pa);
+
+void WriteTextPersonArray(PersonArray* pa);
+

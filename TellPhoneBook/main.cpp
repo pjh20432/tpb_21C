@@ -3,34 +3,36 @@
 #include<string.h>
 #include <conio.h>
 #include "Util.h"
-#include "Person.h"
+#include "PersonArray.h"
 
 int main()
 {
-	Person p1;
+	PersonArray pa;
 	int run = 1;
+	InitPersonArray(&pa);
+
 	while (run)
 	{
 		Menu();
 		puts("메뉴를 선택하시오:");
-		//char c = getchar(); Flush();
+		
 		char c = _getch();
 		switch (c)
 		{
 		case'1':
-			InputPerson(&p1);
+			AddPersonArray(&pa);
 			break;
 		case'2':
-			PrintPerson(&p1);
+			PrintPersonArray(&pa);
 			break;
 		case'3':
-			printf("기능 1\n");
+			SearchPersonArray(&pa);
 			break;
 		case'4':
-			printf("기능 1\n");
+			RemovePersonArray(&pa);
 			break;
 		case'5':
-			printf("기능 1\n");
+			WriteTextPersonArray(&pa);
 			break;
 		case'0':
 			run = 0;
@@ -38,5 +40,6 @@ int main()
 
 		}
 	}
+	UninitPersonArray(&pa);
 
 }
