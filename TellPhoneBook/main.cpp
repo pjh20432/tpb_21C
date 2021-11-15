@@ -1,24 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include "Util.h"
 
-void Menu() {
-
-	puts("===================");
-	puts("1. 전화번호 등록"); //printf와 똑같은 역할
-	puts("2. 전화번호 출력");
-	puts("3. 전화번호 검색");
-	puts("4. 전화번호 삭제");
-	puts("5. 전화번호 Text 파일 출력");
-	puts("0. 프로그램 종료");
-	puts("");
-}
 
 int main()
 {
 	int run = 1;
 	while (run)
 	{
+		Menu();
 		puts("메뉴를 선택하시오:");
 		char c = getchar(); getchar();
 		switch (c)
