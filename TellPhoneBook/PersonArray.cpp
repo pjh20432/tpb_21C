@@ -2,12 +2,56 @@
 #include<string.h>
 #include "PersonArray.h"
 
-void InitPersonArray(PersonArray* pa)
+void InitPersonArray(PersonArray* pa) //personarray에서 person데이터를 다루기 때문에 비효율적
 {
+    FILE* fp;
+    
     pa->perCount = 0;
+    //데이터 복구
+
+    //데이터 저장
+    
+    fopen_s(&fp, "tpb.bdf", "rb");
+    
+    if (fp == NULL)
+    {
+        printf("파일이 존재하지 않는다. 실패!\n");
+        return;
+    }
+    
+    //header
+    fread(&pa->perCount, sizeof(int), 1, fp);
+    //body
+    for (int i = 0; i < pa->perCount; ++i)
+    {
+        fread(pa->arr[i].name, 20, 1, fp);
+        fread(pa->arr[i].phone, 20, 1, fp);
+    }
+    fclose(fp);
 }
+
 void UninitPersonArray(PersonArray* pa)
 {
+    //데이터 저장
+    FILE* fp;
+    fopen_s(&fp, "tpb.bdf", "wb");
+   
+    if (fp == NULL)
+    {
+        printf("파일 출력 실패!\n");
+        return;
+    }
+    
+    //header
+    fwrite(&pa->perCount, sizeof(int), 1, fp);
+    //body
+    for (int i = 0; i < pa->perCount; ++i)
+    {
+        fwrite(pa->arr[i].name, 20, 1, fp);
+        fwrite(pa->arr[i].phone, 20, 1, fp);
+    }
+    fclose(fp);
+
     pa->perCount = 0;
 }
 void AddPersonArray(PersonArray* pa)
